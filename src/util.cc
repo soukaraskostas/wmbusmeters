@@ -64,10 +64,19 @@ bool gotHupped()
 
 pthread_t wake_me_up_on_sig_chld_ {};
 
+#ifdef _WIN32
+// On Windows, do nothing or store a dummy value
+void wakeMeUpOnSigChld(pthread_t t)
+{
+    // no-op or assign dummy value if needed
+}
+#else
 void wakeMeUpOnSigChld(pthread_t t)
 {
     wake_me_up_on_sig_chld_ = t;
 }
+#endif
+
 
 void doNothing(int signum)
 {
