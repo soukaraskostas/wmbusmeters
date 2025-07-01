@@ -1,0 +1,31 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Install MSYS2 + dependencies
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            make
+            git
+
+      - name: Compile wmbusmeters statically
+        shell: msys2 {0}
+        run: |
+          make STATIC=1
+
+      - name: Upload .exe as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: wmbusmeters.exe
+          path: wmbusmeters.exe
