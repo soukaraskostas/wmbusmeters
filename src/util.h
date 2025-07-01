@@ -33,8 +33,8 @@ void onExit(std::function<void()> cb);
 void restoreSignalHandlers();
 bool gotHupped();
 
-#ifdef _WIN32
-// Windows: define an empty stub or do nothing
+#if defined(_WIN32) && !defined(__MINGW32__) && !defined(__MINGW64__)
+// Windows native (MSVC or similar) without pthreads
 typedef void* pthread_t; // dummy typedef to avoid errors if used elsewhere
 inline void wakeMeUpOnSigChld(pthread_t t) { /* no-op on Windows */ }
 #else
