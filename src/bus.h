@@ -28,6 +28,7 @@
 #include<set>
 #include<string>
 
+
 enum class DetectionType { STDIN_FILE_SIMULATION, ALL_BUT_SFS };
 
 struct MeterManager;
