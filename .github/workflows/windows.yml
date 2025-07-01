@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install MSYS2 + dependencies
         uses: msys2/setup-msys2@v2
@@ -25,7 +25,7 @@ jobs:
           make STATIC=1
 
       - name: Upload .exe as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: wmbusmeters.exe
           path: wmbusmeters.exe
