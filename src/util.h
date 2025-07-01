@@ -32,7 +32,17 @@ const char *getVersion();
 void onExit(std::function<void()> cb);
 void restoreSignalHandlers();
 bool gotHupped();
+
+#ifdef _WIN32
+// Windows: define an empty stub or do nothing
+typedef void* pthread_t; // dummy typedef to avoid errors if used elsewhere
+inline void wakeMeUpOnSigChld(pthread_t t) { /* no-op on Windows */ }
+#else
+#include <pthread.h>
 void wakeMeUpOnSigChld(pthread_t t);
+#endif
+
+
 bool signalsInstalled();
 
 typedef unsigned char uchar;
