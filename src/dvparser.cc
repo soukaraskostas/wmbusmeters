@@ -26,6 +26,7 @@
 #include<limits>
 
 #include <cstring>
+#include "util.h"   // include our new util.h
 
 // The parser should not crash on invalid data, but yeah, when I
 // need to debug it because it crashes on invalid data, then
