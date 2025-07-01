@@ -24,6 +24,9 @@
 #include<string.h>
 #include<limits>
 
+#include <cstring> // for string functions if needed
+#include "util.h"  // provides strptime on Windows and wakeMeUpOnSigChld stub
+
 NumericFormula::~NumericFormula() { }
 NumericFormulaConstant::~NumericFormulaConstant() { }
 NumericFormulaMeterField::~NumericFormulaMeterField() { }
