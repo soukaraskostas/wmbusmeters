@@ -38,7 +38,11 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+
+#ifndef _WIN32
 #include <syslog.h>
+#endif
+
 #include <unistd.h>
 
 using namespace std;
